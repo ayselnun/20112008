@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sebuah Pesan</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#0a0f2c,#1e3a8a,#60a5fa);
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+color:white;
+}
+
+/* animasi background */
+.bubble{
+position:absolute;
+bottom:-50px;
+width:10px;
+height:10px;
+background:rgba(255,255,255,0.3);
+border-radius:50%;
+animation:float 10s infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+
+/* card pesan */
+.card{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:35px;
+width:420px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+animation:fade 1.5s;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+#text{
+line-height:1.6;
+font-size:15px;
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#1e40af;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#2563eb;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Hai</h2>
+
+<p id="text">Aku cuma mau bilang sesuatu...</p>
+
+<button onclick="startTyping()">Baca</button>
+
+</div>
+
+<script>
+
+/* buat partikel background */
+for(let i=0;i<25;i++){
+let bubble=document.createElement("div")
+bubble.className="bubble"
+bubble.style.left=Math.random()*100+"%"
+bubble.style.animationDuration=(5+Math.random()*10)+"s"
+bubble.style.opacity=Math.random()
+document.body.appendChild(bubble)
+}
+
+/* pesan */
+let message=`Aku cuma mau minta maaf karena kemarin tiba-tiba ngeblokir kamu. 
+Aku panik waktu itu karena ada yang tahu kalau kita DM-an, dan aku takut itu bisa jadi masalah buat kita berdua atau bahkan bikin kita kena skorsing.
+
+Aku juga sempat diancam. Katanya kalau sebelum Idul Fitri aku nggak blokir kamu, hal ini bakal dilaporin ke ustadzah. Itu yang bikin aku makin takut dan akhirnya ngeblokir kamu.
+
+Aku juga sempat dengar katanya kamu lagi suka sama seseorang. Aku nggak tahu itu benar atau nggak, tapi mungkin itu juga yang bikin aku merasa lebih baik kalau aku agak menjauh.
+Aku cuma nggak mau jadi beban atau bikin kamu nggak nyaman. Kalau aku pernah bikin kamu risih atau ilfeel, aku benar-benar minta maaf.
+
+Makasih juga ya karena sudah mau dengerin ceritaku dan sabar sama aku. Jujur aku nyaman ngobrol sama kamu.
+
+Soal semua yang pernah aku ceritain ke kamu, aku harap itu tetap kamu simpan ya dan nggak diceritain ke siapa-siapa. Aku percaya sama kamu.
+
+Intinya aku cuma mau bilang maaf dan terima kasih.`
+
+let i=0
+
+function startTyping(){
+let speed=35
+let textArea=document.getElementById("text")
+textArea.innerHTML=""
+let typing=setInterval(function(){
+if(i<message.length){
+textArea.innerHTML+=message.charAt(i)
+i++
+}else{
+clearInterval(typing)
+}
+},speed)
+}
+
+</script>
+
+</body>
+</html>
+
